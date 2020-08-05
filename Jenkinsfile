@@ -46,7 +46,7 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 //implement Kubernetes deployment here
-               sh 'kubectl apply -f /var/lib/jenkins/workspace/demo2_mastertrain-schedule-kube.yaml'
+               sh 'kubectl apply -f /var/lib/jenkins/workspace/demo2_master/train-schedule-kube.yaml'
             }
         }
     }
