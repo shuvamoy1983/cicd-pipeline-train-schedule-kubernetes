@@ -43,10 +43,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script {
+               
                 //implement Kubernetes deployment here
-                kubernetesDeploy(kubeconfigId: "kubeconfig",configs: "train-schedule-kube.yaml")
-                }
+                kubernetesDeploy(kubeconfigId: "kubeconfig",configs: "train-schedule-kube.yaml",enableConfigSubstitution: true)
+                
             }
         }
     }
