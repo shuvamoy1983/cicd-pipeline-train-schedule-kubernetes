@@ -43,14 +43,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-                input 'Deploy to Production?'
-                milestone(1)
+                script {
                 //implement Kubernetes deployment here
-                kubernetesDeploy(kubeconfigId: 'kubeconfig',
-                configs: 'train-schedule-kube.yaml',
-                enableConfigSubstitution: true
-               )
-          
+                kubernetesDeploy(kubeconfigId: "kubeconfig",configs: "train-schedule-kube.yaml")
+                }
             }
         }
     }
