@@ -49,8 +49,7 @@ pipeline {
                kubernetesDeploy(
                     credentialsType: 'kubeconfig',
                     kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'],
-                    configs: 'train-schedule-kube.yaml',
-                    enableConfigSubstitution: true
+                    configs: 'train-schedule-kube.yaml'
                 )
             }
         }
