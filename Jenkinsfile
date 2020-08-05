@@ -46,11 +46,11 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 //implement Kubernetes deployment here
-               kubernetesDeploy(
-                    credentialsType: 'kubeconfig',
-                    kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'],
-                    configs: 'train-schedule-kube.yaml'
-                )
+                kubernetesDeploy(kubeconfigId: 'mykubeconfig',
+                configs: '/var/lib/jenkins/workspace/demo2_master/train-schedule-kube.yaml', // REQUIRED
+                enableConfigSubstitution: false
+               )
+          
             }
         }
     }
