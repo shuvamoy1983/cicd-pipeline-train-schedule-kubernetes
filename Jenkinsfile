@@ -48,6 +48,7 @@ pipeline {
                 //implement Kubernetes deployment here
                kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
+                    kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'],
                     configs: 'train-schedule-kube.yaml',
                     enableConfigSubstitution: true
                 )
