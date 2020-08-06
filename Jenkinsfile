@@ -46,7 +46,7 @@ pipeline {
                
                 //implement Kubernetes deployment here
                 //kubernetesDeploy(kubeconfigId: "kubeconfig",configs: "train-schedule-kube.yaml",enableConfigSubstitution: true)
-                withKubeConfig([credentialsId: 'mykube', serverUrl: 'https://35.239.195.190']) {
+                withKubeCredentials([credentialsId: 'kubeconfig', serverUrl: 'https://35.239.195.190']) {
                 sh 'kubectl apply -f train-schedule-kube.yaml'
                     }    
                 
