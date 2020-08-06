@@ -45,7 +45,7 @@ pipeline {
             steps {
                
                 //implement Kubernetes deployment here
-                kubernetesDeploy(kubeconfigId: "kubeconfig",configs: "train-schedule-kube.yaml",enableConfigSubstitution: true)
+                kubernetesDeploy(kubeconfigId: "mykube",configs: "train-schedule-kube.yaml",enableConfigSubstitution: true)
                 
             }
         }
