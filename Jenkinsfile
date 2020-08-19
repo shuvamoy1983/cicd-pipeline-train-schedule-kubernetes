@@ -4,7 +4,7 @@ pipeline {
         PROJECT_ID = 'playground-s-11-e64912be'
         CLUSTER_NAME = 'ks'
         LOCATION = 'us-central1-c'
-        CREDENTIALS_ID = 'playground-s-11-e64912be'
+        CREDENTIALS_ID = 'playground-s-11-513d5d1c'
         DOCKER_IMAGE_NAME = "shuvamoy008/train-schedule-test"
     }
     stages {
@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Deploy to GKE') {
             steps{
-                sh "sed -i 's/$DOCKER_IMAGE_NAME:$BUILD_NUMBER/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/g' train-schedule-kube.yaml"
+                sh "sed -i 's/train-schedule-test:$BUILD_NUMBER/train-schedule-test:${env.BUILD_NUMBER}/g' train-schedule-kube.yaml"
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'train-schedule-kube.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
