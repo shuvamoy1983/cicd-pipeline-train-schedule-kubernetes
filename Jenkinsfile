@@ -43,6 +43,7 @@ pipeline {
         }
         stage('Deploy to GKE') {
             steps{
+                sh "sed -i 's/shuvamoy008:latest/shuvamoy008:${env.BUILD_ID}/g' train-schedule-kube.yaml"
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'train-schedule-kube.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
