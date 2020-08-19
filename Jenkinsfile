@@ -1,7 +1,10 @@
 pipeline {
     agent any
-    environment {
-        //be sure to replace "willbla" with your own Docker Hub username
+        environment {
+        PROJECT_ID = 'playground-s-11-e64912be'
+        CLUSTER_NAME = 'ks'
+        LOCATION = 'us-central1-c'
+        CREDENTIALS_ID = 'playground-s-11-e64912be'
         DOCKER_IMAGE_NAME = "shuvamoy008/train-schedule-test"
     }
     stages {
@@ -38,15 +41,9 @@ pipeline {
                 }
             }
         }
-        stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
-            steps {
-               
-                //implement Kubernetes deployment here
-                kubernetesDeploy(kubeconfigId: "kubeconfig",configs: "train-schedule-kube.yaml",enableConfigSubstitution: true)
-            
+        stage('Deploy to GKE') {
+            steps{
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'train-schedule-kube.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
     }
