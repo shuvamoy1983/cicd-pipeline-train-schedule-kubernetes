@@ -47,5 +47,12 @@ pipeline {
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'train-schedule-kube.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
+        stage('Deploy strimzi') {
+            steps{
+               sh "helm repo add strimzi https://strimzi.io/charts/"
+               sh "helm install strimzi/strimzi-kafka-operator --generate-name"
+            }
+        }
+                
     }
 }
