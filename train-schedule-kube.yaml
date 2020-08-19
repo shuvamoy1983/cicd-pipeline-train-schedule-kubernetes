@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: shuvamoy008/train-schedule-test:19
+        image: shuvamoy008/train-schedule-test:latest
         ports:
-        - containerPort: 30000
+        - containerPort: 8081
 ---
 
 kind: Service
@@ -31,7 +31,7 @@ spec:
     app: train-schedule
   ports:
   - protocol: TCP
-    port: 30000
+    port: 8081
     nodePort: 30000
 
 
