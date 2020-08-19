@@ -1,7 +1,7 @@
 pipeline {
     agent any
         environment {
-        PROJECT_ID = 'playground-s-11-e64912be'
+        PROJECT_ID = 'playground-s-11-513d5d1c'
         CLUSTER_NAME = 'ks'
         LOCATION = 'us-central1-c'
         CREDENTIALS_ID = 'playground-s-11-513d5d1c'
