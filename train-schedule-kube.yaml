@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: shuvamoy008/train-schedule-test:latest
+        image: shuvamoy008/train-schedule-test:19
         ports:
         - containerPort: 30000
 ---
